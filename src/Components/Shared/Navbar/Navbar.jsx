@@ -6,12 +6,14 @@ const Navbar = () => {
       <li>
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
-        <Link to="/">Contact</Link>
+        <Link to="/service">Service</Link>
+        <Link to="/blog">Blog</Link>
+        <Link to="/contact">Contact</Link>
       </li>
     </ul>
   );
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 p-5">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -45,7 +47,7 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{link}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Get started</a>
+        <a className="btn btn-outline">Appointment</a>
       </div>
     </div>
   );
