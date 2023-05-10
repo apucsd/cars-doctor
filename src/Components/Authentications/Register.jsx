@@ -1,14 +1,20 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
   const handleRegister = (event) => {
     event.preventDefault();
     const form = event.target;
-    console.log(form);
+    // console.log(form);
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
     console.log(name, email, password);
+    createUser(email, password)
+      .then((result) => console.log(result.user))
+      .catch((error) => console.log(error));
   };
   return (
     <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">

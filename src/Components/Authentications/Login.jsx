@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 export default function Login() {
+  const { logInUser } = useContext(AuthContext);
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -8,7 +11,9 @@ export default function Login() {
 
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name, email, password);
+    logInUser(email, password)
+      .then((result) => console.log(result.user))
+      .catch((error) => console.log(error));
   };
   return (
     <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
@@ -34,7 +39,7 @@ export default function Login() {
             <input
               name="password"
               type="password"
-              className="block w-full px-4 py-2 mt-2 text-white bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full px-4 py-2 mt-2  border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
             />
           </div>
           <a href="#" className="text-xs   hover:underline">
