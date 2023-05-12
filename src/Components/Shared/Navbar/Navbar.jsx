@@ -1,6 +1,15 @@
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
+import { useContext } from "react";
+import { AuthContext } from "../../../Provider/AuthProvider";
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  // console.log(user);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((err) => console.log(err));
+  };
   const link = (
     <ul>
       <li>
@@ -9,6 +18,15 @@ const Navbar = () => {
         <Link to="/service">Service</Link>
         <Link to="/blog">Blog</Link>
         <Link to="/contact">Contact</Link>
+        {user ? (
+          <button onClick={handleLogOut} className="btn btn-outline">
+            Log Out
+          </button>
+        ) : (
+          <Link className="btn btn-warning" to="/login">
+            Login
+          </Link>
+        )}
       </li>
     </ul>
   );
